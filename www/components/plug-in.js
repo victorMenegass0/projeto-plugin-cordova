@@ -1,26 +1,20 @@
 // This is a JavaScript file
+$(document).on('click', '#camera', function(){
+  navigator.camera.getPicture(onSuccess, onFail, 
+  { 
+    quality: 100,
+    destinationType: Camera.
+    DestinationType.FILE_URI,
+    correctOrientation: true,
+    saveToPhotoAlbum: true
+  });
 
-$(document).on('click', '#alertabtn', function(){
-  navigator.notification.alert("ta dando certo por enquanto", null, "блять", "clicka ai");
-});
-
-
-$(document).on('click', '#confirmbtn', function(){
-  function confirma(buttonIndex){
-     if(buttonIndex==1){
-       navigator.notification.alert("voce escolheu b", null, "блять", "clicka ai");
-     }
-     else if(buttonIndex==2){
-       navigator.notification.alert("voce escolheu a", null, "блять", "clicka ai");
-     }    
+  function onSuccess(imageURI) {
+      var image = document.getElementById('imagem');
+      image.src = imageURI;
   }
-  navigator.notification.confirm('escolha "a" ou "b"', confirma, "блять",['b', 'a']);
-});
 
-$(document).on('click', '#beepbtn', function(){
-  navigator.notification.beep(3);
-  navigator.vibrate(400);
-});
-$(document).on('click', '#vibratebtn', function(){
-  navigator.vibrate(400);
-});
+  function onFail(message) {
+      alert('Failed because: ' + message);
+  }
+})
