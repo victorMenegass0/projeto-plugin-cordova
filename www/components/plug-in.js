@@ -1,23 +1,3 @@
-// This is a JavaScript file
-$(document).on('click', '#camera', function(){
-  navigator.camera.getPicture(onSuccess, onFail, 
-  { 
-    quality: 100,
-    destinationType: Camera.
-    DestinationType.FILE_URI,
-    correctOrientation: true,
-    saveToPhotoAlbum: true
-  });
-
-  function onSuccess(imageURI) {
-      var image = document.getElementById('imagem');
-      image.src = imageURI;
-  }
-
-  function onFail(message) {
-      alert('Failed because: ' + message);
-  }
-})
 
 //notification e vibrate
 $(document).on('click', '#alert', function(){
@@ -50,14 +30,7 @@ $(document).on('click', '#vibrate', function(){
 //geolocation
 $(document).on('click','#local', function(){
   var onSuccess = function(position) {
-        alert('Latitude: '          + position.coords.latitude          + '\n' +
-              'Longitude: '         + position.coords.longitude         + '\n' +
-              'Altitude: '          + position.coords.altitude          + '\n' +
-              'Accuracy: '          + position.coords.accuracy          + '\n' +
-              'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
-              'Heading: '           + position.coords.heading           + '\n' +
-              'Speed: '             + position.coords.speed             + '\n' +
-              'Timestamp: '         + position.timestamp                + '\n');
+        mostramapa(position.coords.latitude, position.coords.longitude);
   }
   function onError(error) {
         alert('code: '    + error.code    + '\n' +
@@ -66,6 +39,17 @@ $(document).on('click','#local', function(){
   navigator.geolocation.getCurrentPosition(onSuccess, onError);
 });
 
+function mostramapa(lat, long){
+  L.mapquest.key = 'olQeVCqeZD7qboPvqqqE7fpIruar4qUv';
+
+        var map = L.mapquest.map('map', {
+          center: [lat, long],
+          layers: L.mapquest.tileLayer('map'),
+          zoom: 20
+        });
+
+        map.addControl(L.mapquest.control());
+}
 
 
 

@@ -1,8 +1,9 @@
 button{
   margin-top: 10px;
 }
-#imagem{
-  height: 200px;
+.map{
+  margin-top: 10px;
   width: 100%;
+  height: 300px;
 }
 
